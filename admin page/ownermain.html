@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='ownermain.css'>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">사장님 Blind</div>
+
+      <div class="nav">
+        <span class="active" onclick="changeMenu('hot')">실시간 HOT</span>
+        <span onclick="changeMenu('local')">📍 동네 상권 소식</span>
+        <span onclick="changeMenu('brand')">☕ 브랜드 / 업종별 모임</span>
+        <span onclick="changeMenu('notice')">공지 / 꿀팁</span>
+      </div>
+    </div>
+
+    <main>
+      <div class="main-top">
+        <div class="main-header">
+          <h3>게시물 관리</h3>
+          <p>전체 게시물을 모니터링하고 관리합니다.</p>
+        </div>
+        <div class="search bar">
+          <label for="search" class="a11yHidden">사용자 검색</label>
+          <input type="search" id="search" data-search />
+        </div>
+      </div>
+      <div class="main-middle">
+        <table class="board-table">
+          <thead>
+            <tr>
+              <th>제목</th>
+              <th>카테고리</th>
+              <th>작성일</th>
+              <th>작성자</th>
+              <th>통계</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="title-cell">
+                <div class="title">오늘 비 와서 손님 실화냐</div>
+                <div class="summary">진짜 오늘 장사 개망했음... <span class="highlight">권리금</span> 돌려받고 <span
+                    class="highlight">양도</span> 해야하나</div>
+              </td>
+              <td><span class="badge">카페</span></td>
+              <td>2025-01-19 14:30</td>
+              <td>익명</td>
+              <td class="stats">👁️ 234 💬 12 👍 32</td>
+              <td><button class="delete-btn">🗑️</button></td>
+            </tr>
+
+            <tr class="ad-row">
+              <td class="title-cell">
+                <div class="title">⚠️ [ 광고 ] <span class="red-text">최저가</span> 원두 판매합니다!!!</div>
+                <div class="summary">지금 주문하시면 50% <span class="highlight-pink">할인</span>! 클릭클릭!</div>
+              </td>
+              <td><span class="badge">카페</span></td>
+              <td>2025-01-19 14:25</td>
+              <td>익명</td>
+              <td class="stats">👁️ 12 💬 0 👍 0</td>
+              <td><button class="delete-btn">🗑️</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+<script src='../JS/admin.js'></script>
+</body>
+
+</html>

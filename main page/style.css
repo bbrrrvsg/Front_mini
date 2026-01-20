@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f5f7;
+  color: #222;
+}
+
+/* ===== Header ===== */
+header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+}
+
+.logo {
+  font-weight: 800;
+  margin-right: 30px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.nav span {
+  cursor: pointer;
+  color: #444;
+}
+
+.nav span.active {
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.write-btn {
+  margin-left: auto;
+  background: #2563eb;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+/* ===== Layout ===== */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px 1fr 260px;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.sidebar h4 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.sidebar li {
+  list-style: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+/* ===== Feed ===== */
+.feed {
+  background: #fff;
+  border-radius: 8px;
+}
+
+.post {
+  padding: 16px 18px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.post:hover {
+  background: #f9fafb;
+}
+
+.post-title {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.post-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ===== Right ===== */
+.right {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.right h4 {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.hot {
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #ddd;
+}

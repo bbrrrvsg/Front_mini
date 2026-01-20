@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>사장님 Blind</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">사장님 Blind</div>
+
+    <div class="nav">
+      <span class="active" onclick="changeMenu('hot')">실시간 HOT</span>
+      <span onclick="changeMenu('local')">📍 동네 상권 소식</span>
+      <span onclick="changeMenu('brand')">☕ 브랜드 / 업종별 모임</span>
+      <span onclick="changeMenu('notice')">공지 / 꿀팁</span>
+    </div>
+
+    <div class="write-btn" onclick="location.href='write.html'" style="cursor:pointer;">
+      글쓰기
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <ul class="sidebar">
+    <h4>업종</h4>
+    <li class="active" onclick="filter('all')">전체</li>
+    <li onclick="filter('cafe')">카페</li>
+    <li onclick="filter('chicken')">치킨</li>
+    <li onclick="filter('convenience')">편의점</li>
+  </ul>
+
+  <div class="feed">
+    
+  </div>
+
+  <div class="right">
+    <h4>🔥 HOT</h4>
+    <div class="hot">권리금 돌려받을 수 있음?</div>
+    <div class="hot">배민 수수료 또 오름</div>
+    <div class="hot">오늘 장사 망했다</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
