@@ -47,6 +47,7 @@ let currentMenu = 'hot';
 let currentCategory = null;
 let currentBrand = null;
 
+
 const brandLogos = {
   '스타벅스': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/200px-Starbucks_Corporation_Logo_2011.svg.png',
   '투썸플레이스': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/A_Twosome_Place_logo.svg/200px-A_Twosome_Place_logo.svg.png',
