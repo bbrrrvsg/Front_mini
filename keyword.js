@@ -27,7 +27,7 @@ function AddDangerKeyword() {
         inner.innerHTML = html; //출력
         Addkeyword.value = "";  //입력창 초기화
     }
-    localStorage.setItem("DangGerList", JSON.stringify(dangerlist));    //배열에 있는 금지 키워드를 로컬에 JS형식의 문자열로 저장
+    localStorage.setItem("DangerList", JSON.stringify(dangerlist));    //배열에 있는 금지 키워드를 로컬에 JS형식의 문자열로 저장
     const registration = document.querySelector(`.stat-value-black`);   //저장될 금지어 키워드 갯수 가져옴 
     registration.textContent = dangerlist.length + "개";    //거기다가 금지어의 갯수 넣기
 }
@@ -55,7 +55,7 @@ function DeleteDangerKeyword(index) {
     }
     dangerkeyword.innerHTML = html;
 
-    localStorage.setItem("DangGerList", JSON.stringify(dangerlist));
+    localStorage.setItem("DangerList", JSON.stringify(dangerlist));
     const registration = document.querySelector(`.stat-value-black`);
     registration.textContent = dangerlist.length + "개";
 }
@@ -68,8 +68,21 @@ function UpdateDangerKeyword(index) {
         dangerlist.push(dangerListElements[i].querySelector('.keyword-text').textContent.trim());
     }//배열을 먼저 넣고
     const UpdateIndex=dangerlist[index];//수정할 인덱스 값을 가져와서
-    dangerlist.splice(index,1);//인덱스 값을 없애고
-    //인덱스 번째의 값을 다시 저장
+    const newValue = prompt("금지 키워드를 수정할 키워드를 입력하세요:", UpdateIndex);
+    dangerlist.splice(index,1,newValue);//인덱스 값을 없애고 값을 다시 저장
+    let html = "";
+    for (let j = 0; j < dangerlist.length; j++) {
+        html+=`<li>
+                    <span class="keyword-text">${dangerlist[j]}</span>
+                    <div class="keyword-actions">
+                        <button class="keyword-action-btn edit-btn" onclick="UpdateDangerKeyword(${j})">수정</button>
+                        <button class="keyword-action-btn delete-btn" onclick="DeleteDangerKeyword(${j})">삭제</button>
+                    </div>
+                </li>`;
+        dangerkeyword.innerHTML = html;
+    }
+    localStorage.setItem("DangerList", JSON.stringify(dangerlist));
+
 }
 
 function AddEmphasizeKeyword() {
@@ -133,5 +146,26 @@ function DeleteEmphasizeKeyword(index) {
 }
 
 function UpdateEmphasizeKeyword(index) {
-    // 수정 기능 구현부
+    const inner = document.querySelector(`.highlight-keyword-list`);
+    const EmphasizeList= inner.querySelectorAll(`li`);
+    let emphasizelist = [];
+
+    for (let i = 0; i < EmphasizeList.length; i++) {
+        emphasizelist.push(EmphasizeList[i].querySelector('.keyword-text').textContent.trim());
+    }
+    const UpdateIndex=emphasizelist[index];
+    const newValue = prompt("강조 키워드를 수정할 키워드를 입력하세요:", UpdateIndex);
+    emphasizelist.splice(index,1,newValue);
+    let html = "";
+    for (let j = 0; j < emphasizelist.length; j++) {
+        html+=`<li>
+                    <span class="keyword-text">${emphasizelist[j]}</span>
+                    <div class="keyword-actions">
+                        <button class="keyword-action-btn edit-btn" onclick="UpdateEmphasizeKeyword(${j})">수정</button>
+                        <button class="keyword-action-btn delete-btn" onclick="DeleteEmphasizeKeyword(${j})">삭제</button>
+                    </div>
+                </li>`;
+    }
+    inner.innerHTML = html;
+    localStorage.setItem("EmphasizeList", JSON.stringify(emphasizelist));
 }

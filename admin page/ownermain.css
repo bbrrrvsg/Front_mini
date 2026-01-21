@@ -178,20 +178,3 @@ body {
 .btn-delete:hover {
   background-color: #fff5f5;
 }
-
-/* 열 너비 조정 */
-.col-title {
-  width: 50%;
-}
-
-.col-category {
-  width: 10%;
-}
-
-.col-date {
-  width: 15%;
-}
-
-.col-stats {
-  width: 15%;
-}
