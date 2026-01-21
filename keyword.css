@@ -190,7 +190,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: 200px; /* Example height */
+    max-height: 200px;
     overflow-y: auto;
     padding-right: 10px;
 }
@@ -203,62 +203,63 @@ body {
     border-radius: 8px;
     font-size: 15px;
     font-weight: 600;
-    transition: 0.2s;
-}
-
-/* Make cursor default since the whole li is not a single button anymore */
-.keyword-list li {
-    cursor: default;
+    transition: background-color 0.2s;
 }
 
 .keyword-text {
     flex-grow: 1;
 }
 
-.edit-input {
-    flex-grow: 1;
-    border: none;
-    background: transparent;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 0;
-    margin-right: 10px;
+.keyword-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
 }
-
-.forbidden-keyword-list .edit-input { color: #D9534F; }
-.highlight-keyword-list .edit-input { color: #F0AD4E; }
-.edit-input:focus {
-    outline: none;
-    border-bottom: 1px solid var(--main-blue);
-}
-
 
 .keyword-action-btn {
-    background: transparent;
+    background: none;
     border: none;
-    cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
+    font-family: inherit;
     font-weight: 600;
-    margin-left: 8px;
-    padding: 4px 8px;
-    border-radius: 5px;
-    transition: background-color 0.2s;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    color: #888; /* 버튼 기본 색상 */
 }
 
-.keyword-action-btn.delete-btn { color: #aaaaaa; }
-.keyword-action-btn.edit-btn { color: #aaaaaa; }
-.keyword-action-btn.save-btn { color: var(--main-blue); }
-
-.keyword-action-btn:hover {
-    color: var(--text-dark);
-    background-color: rgba(0,0,0,0.05);
+.keyword-action-btn.edit-btn:hover {
+    color: var(--main-blue);
+    background-color: rgba(6, 132, 208, 0.1);
 }
 
-.forbidden-keyword-list li { background: #ffeded; color: #D9534F; border: 1px solid #ffdddd; }
-.forbidden-keyword-list li:hover { background: #ffdddd; }
+.keyword-action-btn.delete-btn:hover {
+    color: var(--point-red);
+    background-color: rgba(217, 83, 79, 0.1);
+}
 
-.highlight-keyword-list li { background: #fff8e1; color: #F0AD4E; border: 1px solid #ffecb3; }
-.highlight-keyword-list li:hover { background: #ffecb3; }
+.forbidden-keyword-list li { 
+    background: #ffeded; 
+    border: 1px solid #ffdddd; 
+}
+.forbidden-keyword-list li .keyword-text { 
+    color: var(--point-red); /* 키워드 텍스트 색상 */
+}
+.forbidden-keyword-list li:hover { 
+    background: #ffdddd; 
+}
+
+.highlight-keyword-list li { 
+    background: #fff8e1; 
+    border: 1px solid #ffecb3; 
+}
+.highlight-keyword-list li .keyword-text { 
+    color: var(--point-yellow); /* 키워드 텍스트 색상 */
+}
+.highlight-keyword-list li:hover { 
+    background: #ffecb3; 
+}
 
 .tip-box {
     margin-top: 20px;
