@@ -33,11 +33,11 @@
                 </div>
                 <div class="stat-card">
                     <span class="stat-title">등록된 강조 키워드</span>
-                    <span class="stat-value-orange">6개</span>
+                    <span class="stat-value-orange">1개</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-title">등록된 금지 키워드</span>
-                    <span id="forbidden-keyword-count" class="stat-value-black">7개</span>
+                    <span id="forbidden-keyword-count" class="stat-value-black">1개</span>
                 </div>
             </section>
 
@@ -52,13 +52,13 @@
                         <button class="add-button forbidden" onclick="AddDangerKeyword()">+ 추가</button>
                     </div>
                     <ul class="forbidden-keyword-list">
-                        <li>광고</li>
-                        <li>홍보</li>
-                        <li>판매</li>
-                        <li>구매</li>
-                        <li>최저가</li>
-                        <li>할인</li>
-                        <li>클릭</li>
+                        <li>
+                            <span class="keyword-text">광고</span>
+                            <div class="keyword-actions">
+                                <button class="keyword-action-btn edit-btn" onclick="UpdateDangerKeyword()">수정</button>
+                                <button class="keyword-action-btn delete-btn" onclick="DeleteDangerKeyword()">삭제</button>
+                            </div>
+                        </li>
                     </ul>
                 </section>
 
@@ -72,12 +72,13 @@
                         <button class="add-button-highlight" onclick="AddEmphasizeKeyword()">+ 추가</button>
                     </div>
                     <ul class="highlight-keyword-list">
-                        <li>권리금</li>
-                        <li>양도</li>
-                        <li>진상</li>
-                        <li>임대료</li>
-                        <li>직원</li>
-                        <li>채용</li>
+                        <li>
+                            <span class="keyword-text">권리금</span>
+                            <div class="keyword-actions">
+                                <button class="keyword-action-btn edit-btn">수정</button>
+                                <button class="keyword-action-btn delete-btn">삭제</button>
+                            </div>
+                        </li>
                     </ul>
                     <div class="tip-box">
                         <strong>Tip:</strong> 권리금, 양도, 진상 등 사장님들이 주목해야 할 핵심 키워드를 등록하세요.
