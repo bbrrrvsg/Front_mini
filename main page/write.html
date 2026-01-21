@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>글쓰기 - 사장님 Blind</title>
-  <link rel="stylesheet" href="style.css"> <style>
+  <link rel="stylesheet" href="style.css">
+  <style>
     .write-container {
       max-width: 800px;
       margin: 50px auto;
@@ -12,7 +13,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    .write-container input, .write-container textarea {
+    .write-container input, .write-container textarea, .write-container select {
       width: 100%;
       border: 1px solid #ddd;
       border-radius: 6px;
@@ -31,14 +32,28 @@
     }
     .btn-submit { background: #2563eb; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
     .btn-cancel { background: #6b7280; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+    #brand-select { display: block; }
   </style>
 </head>
 <body>
 
 <div class="write-container">
   <h2>새 게시글 작성</h2>
+  
+  <select id="category-select" onchange="카테고리변경()">
+    <option value="">업종 선택</option>
+    <option value="cafe">카페</option>
+    <option value="chicken">치킨</option>
+    <option value="convenience">편의점</option>
+    <option value="restaurant">식당</option>
+  </select>
+  
+  <select id="brand-select">
+    <option value="">브랜드 선택 (선택사항)</option>
+  </select>
+  
   <input type="text" id="post-title" placeholder="제목을 입력하세요">
-  <textarea id="post-content" placeholder="사장님들의  고민이나 꿀팁을 공유해 주세요."></textarea>
+  <textarea id="post-content" placeholder="사장님들의 고민이나 꿀팁을 공유해 주세요."></textarea>
   
   <div class="write-actions">
     <button class="btn-cancel" onclick="location.href='index.html'">취소</button>
@@ -46,6 +61,42 @@
   </div>
 </div>
 
-<script src="../main page/user.js"></script>
+<script src="user.js"></script>
+<script>
+  const brands = {
+    cafe: [
+      '스타벅스', '투썸플레이스', '이디야커피', '메가커피', 
+      '컴포즈커피', '빽다방', '할리스', '탐앤탐스', 
+      '카페베네', '엔제리너스'
+    ],
+    chicken: [
+      'BBQ', '교촌치킨', 'BHC', '굽네치킨', '페리카나',
+      '네네치킨', '처갓집', '호식이두마리치킨', '멕시카나', '푸라닭'
+    ],
+    convenience: [
+      'CU', 'GS25', '세븐일레븐', '이마트24', '미니스톱'
+    ],
+    restaurant: [
+      '맘스터치', '롯데리아', '맥도날드', 'KFC', '버거킹',
+      '서브웨이', '김밥천국', '죠스떡볶이'
+    ]
+  };
+  
+  function 카테고리변경() {
+    const category = document.querySelector('#category-select').value;
+    const brandSelect = document.querySelector('#brand-select');
+    
+    if (!category) {
+      brandSelect.innerHTML = '<option value="">브랜드 선택 (선택사항)</option>';
+      return;
+    }
+    
+    brandSelect.innerHTML = '<option value="">브랜드 선택 (선택사항)</option>';
+    
+    brands[category].forEach(brand => {
+      brandSelect.innerHTML += `<option value="${brand}">${brand}</option>`;
+    });
+  }
+</script>
 </body>
-</html>
+</html>  'asdf.>tr>td'
