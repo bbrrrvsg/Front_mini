@@ -33,5 +33,6 @@ function 게시물등록() {
   localStorage.setItem('posts', JSON.stringify(글목록));  
 
   alert("글이 등록되었습니다.");
-  location.href = "index.html";
+  location.href = "../index.html";
+
 }
