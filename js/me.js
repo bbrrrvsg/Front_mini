@@ -59,8 +59,9 @@ function printWSum() {
 
     const stat4 = document.querySelector("#d")
     let html4 ='';
-    // 자동차단 들어가야함 (추후에)
 
+    // 자동차단 들어가야함 (추후에)
+    
 
 
 
@@ -97,7 +98,7 @@ function printWlist() {
             }
         }
 
-        // 4. 상태(차단/경고)에 따른 디자인 설정
+        // 상태(차단/경고)에 따른 디자인 설정
         let barColor = "progress-warning";
         let badgeClass = "badge-warning";
         let statusText = "경고중";
@@ -112,7 +113,7 @@ function printWlist() {
             badgeStyle = `cursor: pointer;`;
         }
 
-        // 5. 백틱(``)을 사용하여 변수에 HTML 저장
+        // HTML 저장
         html += `
             <tr>
                 <td>${user.nickname}</td>
@@ -131,7 +132,7 @@ function printWlist() {
         `;
     }
 
-    // 6. 반복문이 끝나면 tbody에 한 번에 넣기
+    
     listArea.innerHTML = html;
 }
 
