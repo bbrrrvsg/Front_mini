@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  font-family: 'Pretendard', sans-serif;
 }
 
 body {
@@ -9,162 +9,107 @@ body {
   color: #222;
 }
 
-/* ===== Header ===== */
 header {
   position: sticky;
   top: 0;
   background: #fff;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #e5e7eb;
   z-index: 100;
 }
 
 .header-inner {
-  max-width: 1280px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  padding: 14px 20px;
+  padding: 16px 20px;
 }
 
 .logo {
+  font-size: 18px;
   font-weight: 800;
-  margin-right: 30px;
+  color: #2563eb;
+  margin-right: 40px;
 }
 
 .nav {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   font-size: 14px;
 }
 
 .nav span {
   cursor: pointer;
-  color: #444;
-}
-
-.nav span.active {
-  font-weight: 700;
-  color: #2563eb;
-}
-
-.write-btn {
-  margin-left: auto;
-  background: #2563eb;
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-}
-
-
-
-
-/* 전체 컨테이너 및 기본 폰트 */
-body {
-  font-family: 'Pretendard', sans-serif;
-  background-color: #f8f9fa;
-  padding: 20px;
+  color: #6b7280;
 }
 
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 1100px;
+  margin: 30px auto;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  /* 둥근 모서리 적용을 위해 */
+  padding: 25px;
 }
 
-/* 테이블 기본 설정 */
-.board-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-
-/* 헤더 스타일 */
-.board-table thead {
-  background-color: #fcfcfc;
-  border-bottom: 1px solid #eee;
-}
-
-.board-table th {
-  padding: 15px;
-  color: #666;
-  font-weight: 500;
-  text-align: left;
-}
-
-/* 행(Row) 공통 스타일 */
-.board-table td {
-  padding: 15px;
+.main-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
   border-bottom: 1px solid #f1f1f1;
-  vertical-align: middle;
 }
 
-/* 제목 및 요약글 */
-.post-title {
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 4px;
-  color: #333;
+.main-header h3 {
+  margin: 0;
+  font-size: 20px;
 }
 
-.post-summary {
+.main-header p {
+  margin: 5px 0 0 0;
   color: #888;
   font-size: 13px;
 }
 
-/* 하이라이트 효과 */
-.hl-yellow {
-  background-color: #fff3bf;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #333;
+#search {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
 
-.hl-pink {
-  background-color: #ffdce0;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #e03131;
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.text-danger {
-  color: #e03131;
-  font-weight: bold;
+.board-table th {
+  padding: 12px 15px;
+  background: #fcfcfc;
+  color: #666;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
 }
 
-/* 광고 행 특수 스타일 */
-.row-ad {
-  background-color: #fff8f8;
+.board-table td {
+  padding: 15px;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 14px;
 }
 
-/* 카테고리 배지 */
 .badge {
   background: #f1f3f5;
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 12px;
-  color: #495057;
 }
 
-/* 통계 및 작성일 */
-.text-muted {
+.text-muted, .stats-icons {
   color: #adb5bd;
+  font-size: 12px;
 }
 
-.stats-icons {
-  color: #868e96;
-  white-space: nowrap;
-}
-
-.stats-icons span {
-  margin-right: 8px;
-}
-
-/* 삭제 버튼 */
 .btn-delete {
   background: none;
   border: 1px solid #ffc9c9;
@@ -172,9 +117,4 @@ body {
   padding: 5px 8px;
   border-radius: 4px;
   cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn-delete:hover {
-  background-color: #fff5f5;
 }
