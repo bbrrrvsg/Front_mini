@@ -86,8 +86,8 @@ const brandLogos = {
 
 const brands = {
   cafe: [
-    '스타벅스', '투썸플레이스', '이디야커피', '메가커피', 
-    '컴포즈커피', '빽다방', '할리스', '탐앤탐스', 
+    '스타벅스', '투썸플레이스', '이디야커피', '메가커피',
+    '컴포즈커피', '빽다방', '할리스', '탐앤탐스',
     '카페베네', '엔제리너스'
   ],
   chicken: [
@@ -105,13 +105,13 @@ const brands = {
 
 function changeMenu(menu) {
   currentMenu = menu;
-  
+
   // 네비게이션 active 상태 변경
   document.querySelectorAll('.nav span').forEach(span => {
     span.classList.remove('active');
   });
   event.target.classList.add('active');
-  
+
   if (menu === 'brand') {
     showBrandCategories();
   } else {
@@ -137,20 +137,20 @@ function changeMenu(menu) {
 
 function showBrandCategories() {
   const feed = document.querySelector('.feed');
-  
+
   let html = `
     <div style="padding: 20px;">
       <h2 style="margin-bottom: 20px; color: #111827; font-size: 20px;">업종을 선택해주세요</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px;">
   `;
-  
+
   const categories = [
     { key: 'cafe', name: '☕ 카페', color: '#8B4513' },
     { key: 'chicken', name: '🍗 치킨', color: '#FF6B35' },
     { key: 'convenience', name: '🏪 편의점', color: '#4CAF50' },
     { key: 'restaurant', name: '🍴 식당', color: '#FF5722' }
   ];
-  
+
   categories.forEach(cat => {
     html += `
       <div onclick="selectCategory('${cat.key}')" style="
@@ -169,12 +169,12 @@ function showBrandCategories() {
       </div>
     `;
   });
-  
+
   html += `
       </div>
     </div>
   `;
-  
+
   feed.innerHTML = html;
 }
 
@@ -185,14 +185,14 @@ function selectCategory(category) {
 
 function showBrandList() {
   const feed = document.querySelector('.feed');
-  
+
   const categoryNames = {
     cafe: '☕ 카페',
     chicken: '🍗 치킨',
     convenience: '🏪 편의점',
     restaurant: '🍴 식당'
   };
-  
+
   let html = `
     <div style="padding: 20px;">
       <div style="margin-bottom: 20px;">
@@ -210,10 +210,10 @@ function showBrandList() {
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 15px;">
   `;
-  
+
   brands[currentCategory].forEach(brand => {
     const logoUrl = brandLogos[brand];
-    
+
     html += `
       <div onclick="selectBrand('${brand}')" style="
         background: white;
@@ -238,12 +238,12 @@ function showBrandList() {
       </div>
     `;
   });
-  
+
   html += `
       </div>
     </div>
   `;
-  
+
   feed.innerHTML = html;
 }
 
@@ -255,16 +255,16 @@ function selectBrand(brand) {
 function showBrandPosts() {
   let data = localStorage.getItem('posts');
   let 글목록 = (data == null) ? [] : JSON.parse(data);
-  
+
   let 글구역 = document.querySelector('.feed');
-  
+
   // 필터링: 선택한 카테고리와 브랜드에 맞는 글만
   let 필터된글 = 글목록.filter(글 => {
     if (글.category !== currentCategory) return false;
     if (currentBrand && 글.brand !== currentBrand) return false;
     return true;
   });
-  
+
   let html = `
     <div style="padding: 20px;">
       <div style="margin-bottom: 20px;">
@@ -281,7 +281,7 @@ function showBrandPosts() {
         <h2 style="color: #111827; font-size: 18px;">${currentBrand} 게시판</h2>
       </div>
   `;
-  
+
   if (필터된글.length === 0) {
     html += `
       <div style="text-align: center; padding: 40px 20px;">
@@ -301,7 +301,7 @@ function showBrandPosts() {
       `;
     }
   }
-  
+
   html += `</div>`;
   글구역.innerHTML = html;
 }
