@@ -65,6 +65,7 @@ function printWlist() {
     const listArea = document.querySelector("#foot");
     let users = JSON.parse(localStorage.getItem('users')) || [];
     
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
     let html = "";
 
     for (let i = 0; i < users.length; i++) {
@@ -73,7 +74,7 @@ function printWlist() {
         if (user.warning_cnt === 0) continue;
 
         let lastReport = { reg_date: "-", reason: "-" };
-
+        
         for (let j = 0; j < reports.length; j++) {
             let 신고대상_user_id = null;
             for (let k = 0; k < posts.length; k++) {
@@ -102,7 +103,7 @@ function printWlist() {
             percent = 100; // 차단은 게이지 꽉 차게
             badgeStyle = `cursor: pointer;`;
         }
-
+        console.log( user.status )
         // HTML 저장 (user_id가 문자열이므로 따옴표 추가)
         html += `
             <tr>
@@ -123,6 +124,7 @@ function printWlist() {
     }
 
     listArea.innerHTML = html;
+    
     saveData();
 }
 
