@@ -65,7 +65,7 @@
 
       신고목록.push(신고내역);
       localStorage.setItem('reports', JSON.stringify(신고목록));
-
+      syncUsersFromPosts();
       alert("신고가 접수되었습니다.\n관리자가 확인 후 조치하겠습니다.");
       
       신고모달닫기();

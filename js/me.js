@@ -1,5 +1,3 @@
-
-
 const today = new Date().toISOString().split('T')[0]; // 오늘 날짜 
 
 printWSum() //실행
@@ -57,33 +55,35 @@ function printWSum() {
 
     html4 = `${autoBlocked}명`
     stat4.innerHTML = html4;
-
-
-
-
 }
 
 
 
 printWlist()
 function printWlist() {
+    syncUsersFromPosts();
     const listArea = document.querySelector("#foot");
-
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    
     let html = "";
 
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
 
-        // 경고가 없는 유저는 목록에서 제외
         if (user.warning_cnt === 0) continue;
 
-        // 전체 리포트 중에서 이 유저의 마지막 리포트 찾기
-        let lastReport = { reg_date: "-", reason: "-" }; // 기본값 설정
+        let lastReport = { reg_date: "-", reason: "-" };
 
         for (let j = 0; j < reports.length; j++) {
-            if (reports[j].user_id === user.user_id) {
-                // 이 유저의 신고 기록을 찾을 때마다 lastReport를 업데이트함
-                // 결국 마지막에 찾은 기록이 저장됨
+            let 신고대상_user_id = null;
+            for (let k = 0; k < posts.length; k++) {
+                if (posts[k].post_id === reports[j].post_id) {
+                    신고대상_user_id = posts[k].user_id;
+                    break;
+                }
+            }
+            
+            if (신고대상_user_id === user.user_id) {
                 lastReport = reports[j];
             }
         }
@@ -103,7 +103,7 @@ function printWlist() {
             badgeStyle = `cursor: pointer;`;
         }
 
-        // HTML 저장
+        // HTML 저장 (user_id가 문자열이므로 따옴표 추가)
         html += `
             <tr>
                 <td>${user.nickname}</td>
@@ -117,13 +117,13 @@ function printWlist() {
                 <td>${lastReport.reg_date}</td>
                 <td>${lastReport.reason}</td>
                 <td><span class="badge ${badgeClass}" style="${badgeStyle}" 
-                      ${user.status === "차단" ? `onclick="unblockUser(${user.user_id})"` : ""}>${statusText}</span></td>
+                      ${user.status === "차단" ? `onclick="unblockUser('${user.user_id}')"` : ""}>${statusText}</span></td>
             </tr>
         `;
     }
 
-
     listArea.innerHTML = html;
+    saveData();
 }
 
 
@@ -135,13 +135,13 @@ function unblockUser(id) {
 
     for (let i = 0; i < users.length; i++) {
         if (users[i].user_id === id) {
-            users[i].status = "활동중";      // 문자열 변경
-            users[i].warning_cnt = 0;     // 경고 횟수도 초기화 (다시 활동해야 하니까요)
+            users[i].status = "활동중";
+            users[i].warning_cnt = 0;
             break;
         }
     }
 
-    saveData();     // 로컬스토리지 저장
+    saveData();
     printWSum();
     printWlist();
 
@@ -177,4 +177,4 @@ setInterval(() => {
     saveData();
     printWSum();
     printWlist();
-}, 5000); // 10000ms = 10초
+}, 5000);
