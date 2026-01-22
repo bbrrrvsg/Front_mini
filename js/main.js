@@ -121,6 +121,20 @@ function changeMenu(menu) {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function showBrandCategories() {
   const feed = document.querySelector('.feed');
   
