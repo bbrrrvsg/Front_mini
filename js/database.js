@@ -15,3 +15,15 @@ let reports = JSON.parse(localStorage.getItem('reports')) || [
     { report_id: 2, user_id: 1, reason: "도배", reg_date: "2026-01-20" }
 ];
 
+
+ //새게시물
+let 새게시물 = {
+    post_id: Date.now(),
+    user_id: 'user_' + Math.floor(Math.random() * 1000),
+    title: 글제목,
+    content: 글내용,
+    view_count: 0,
+    reg_date: new Date().toLocaleDateString(),
+    category: 카테고리,
+    brand: 브랜드 || null
+};

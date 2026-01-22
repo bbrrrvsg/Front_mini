@@ -29,6 +29,10 @@ header {
 .logo {
   font-weight: 800;
   margin-right: 30px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .nav {
@@ -61,35 +65,9 @@ header {
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 200px 1fr 260px;
+  grid-template-columns: 1fr 260px;  /* 사이드바 제거, 2열만 */
   gap: 20px;
   padding: 20px;
-}
-
-/* ===== Sidebar ===== */
-.sidebar {
-  background: #fff;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.sidebar h4 {
-  font-size: 14px;
-  margin-bottom: 10px;
-  color: #555;
-}
-
-.sidebar li {
-  list-style: none;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.sidebar li:hover,
-.sidebar li.active {
-  background: #f1f5f9;
-  font-weight: 600;
 }
 
 /* ===== Feed ===== */
@@ -134,4 +112,9 @@ header {
   font-size: 13px;
   padding: 6px 0;
   border-bottom: 1px dashed #ddd;
+  cursor: pointer;
+}
+
+.hot:hover {
+  background: #f9fafb;
 }

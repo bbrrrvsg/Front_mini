@@ -1,68 +1,79 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset='utf-8'>
-  <title>사장님 Blind 관리자</title>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel='stylesheet' type='text/css' href='../css/ownermain.css'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean Owner 관리자 - 게시물 관리</title>
+  <link rel="stylesheet" href="../css/keyword.css">
 </head>
+
 <body>
-  <header>
-    <div class="header-inner">
-      <div class="logo">사장님 Blind</div>
-      <div class="nav">
-        <span class="active">실시간 HOT</span>
-        <span>📍 동네 상권 소식</span>
-        <span>☕ 브랜드 / 업종별 모임</span>
-        <span>공지 / 꿀팁</span>
+  <div class="page-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="/img/image.png" alt="Logo" class="sidebar-logo">
       </div>
-    </div>
-  </header>
+      <ul class="sidebar-menu">
+        <li><a href="#">대시보드</a></li>
+        <li><a href="ownermain.html" class="active">게시물 관리</a></li>
+        <li><a href="keyword.html">키워드 관리</a></li>
+        <li><a href="#">경고 관리</a></li>
+      </ul>
+    </aside>
 
-  <main class="container">
-    <div class="main-top">
-      <div class="main-header">
-        <h3>게시물 관리</h3>
+    <main class="main-content">
+      <header class="admin-header">
+        <h2>게시물 관리</h2>
         <p>전체 게시물을 모니터링하고 관리합니다.</p>
-      </div>
-      <div class="search bar">
-        <input type="search" id="search" data-search placeholder="검색어를 입력하세요" />
-      </div>
-    </div>
+      </header>
 
-    <div class="main-middle">
-      <table class="board-table">
-        <thead>
-          <tr>
-            <th>내용</th>
-            <th>카테고리</th>
-            <th>작성일</th>
-            <th>작성자</th>
-            <th>통계</th>
-            <th>관리</th>
-          </tr>
-        </thead>
-        <tbody class="usercontent">
-          <tr>
-            <td class="usercontents">오늘 비 와서 손님 실화냐 진짜 오늘 장사 개망했음... 권리금 돌려받고 양도해야하나</td>
-            <td><span class="badge">카페</span></td>
-            <td class="text-muted">2025-01-19</td>
-            <td>익명</td>
-            <td class="stats-icons">👁️ 234</td>
-            <td><button class="btn-delete">🗑️</button></td>
-          </tr>
-          <tr>
-            <td class="usercontents">⚠️ [ 광고 ] 최저가 원두 판매합니다!!! 지금 주문하시면 50% 할인! 클릭클릭!</td>
-            <td><span class="badge">식자재</span></td>
-            <td class="text-muted">2025-01-19</td>
-            <td>익명</td>
-            <td class="stats-icons">👁️ 12</td>
-            <td><button class="btn-delete">🗑️</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-  <script src='../js/admin.js'></script>
+      <section class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-title">전체 게시물</span>
+          <span class="stat-value-black" id="total-posts">0개</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-title">오늘 작성된 게시물</span>
+          <span class="stat-value-orange" id="today-posts">0개</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-title">신고된 게시물</span>
+          <span class="stat-value-red" id="reported-posts">0개</span>
+        </div>
+      </section>
+
+      <div class="search-section">
+        <input type="search" id="search" placeholder="게시물 제목 또는 내용으로 검색..." class="search-input">
+        <select id="category-filter" class="filter-select">
+          <option value="">전체 카테고리</option>
+          <option value="cafe">카페</option>
+          <option value="chicken">치킨</option>
+          <option value="convenience">편의점</option>
+          <option value="restaurant">식당</option>
+        </select>
+      </div>
+
+      <section class="post-table-section">
+        <table class="post-table">
+          <thead>
+            <tr>
+              <th style="width: 50%;">내용</th>
+              <th style="width: 10%;">카테고리</th>
+              <th style="width: 12%;">작성일</th>
+              <th style="width: 10%;">작성자</th>
+              <th style="width: 10%;">통계</th>
+              <th style="width: 8%;">관리</th>
+            </tr>
+          </thead>
+          <tbody id="post-list">
+            <!-- 게시물 목록이 여기에 동적으로 추가됩니다 -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <script src="../js/post-management.js"></script>
 </body>
+
 </html>
