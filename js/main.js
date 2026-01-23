@@ -87,7 +87,7 @@ function 글상세보기(post_id) {
     글목록[글인덱스].view_count += 1;
     localStorage.setItem('posts', JSON.stringify(글목록));
 
-    location.href = `/html/detail.html?id=${post_id}`;
+    location.href = `./html/detail.html?id=${post_id}`;
   }
 }
 
