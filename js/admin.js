@@ -36,14 +36,14 @@ function highlightKeywords(keywordList, className, isDanger) {
                             }
                             break;
                         }
-                    }
+                    } 
                     setTimeout(() => {
                         alert(`금지키워드발견: "${dangerousKeywordFound}" 키워드로 인해 게시물이 삭제되었습니다`);
                     }, 200);
                 }
             }, 3000);
         }
-    }
+    } 
 }
 
 /**
@@ -73,7 +73,7 @@ function postsPrint() {
             <td><span class="badge badge-info"> ${post.category}(${post.brand}})</span></td>
             <td class="text-muted">${post.reg_date}</td>
             <td>${post.user_id}</td>
-            <td class="stats-icons">👁️ ${post.view_count}</td>
+            <td class="stats-icons">👁️${post.view_count}</td>
           </tr>`;
     }
     userContent.innerHTML = html;

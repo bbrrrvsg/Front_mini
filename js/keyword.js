@@ -35,7 +35,7 @@ function updateView(storageKey, type) {
     const autoDeleteCount=".stat-value-red";
     // 화면에 그릴 때 사용할 키 이름 결정
     const keyName = isDanger ? "금지어" : "강조어";
-
+ 
     let html = "";
     for (let j = 0; j < list.length; j++) {
         html += `<li>

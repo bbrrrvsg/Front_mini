@@ -3,7 +3,7 @@ function 게시물등록() {
   let 글제목 = document.querySelector("#post-title").value;
   let 글내용 = document.querySelector("#post-content").value;
   let 카테고리 = document.querySelector("#category-select").value;
-  let 브랜드 = document.querySelector("#brand-select").value;
+  let 브랜드 = document.querySelector("#brand-select").value; 
 
   if (!글제목 || !글내용) {
     alert("제목과 내용을 입력해주세요.");
