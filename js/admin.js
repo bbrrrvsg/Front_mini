@@ -20,7 +20,6 @@ function highlightKeywords(keywordList, className, isDanger) {
         if (hasDangerousKeyword) {      // 금지 키워드가 발견된 행은 3초 뒤 알림 후 삭제
             setTimeout(function () {
                 const postDelete = row.getAttribute(`data-id`);   //삭제할 게시물 임시
-                const postDelete = row.getAttribute(`data-id`);   //삭제할 게시물 임시
                 if (row) {
                     row.remove();
                     let posts = JSON.parse(localStorage.getItem('posts')) || [];    //posts로컬 불러오기
@@ -38,9 +37,6 @@ function highlightKeywords(keywordList, className, isDanger) {
                             break;
                         }
                     } 
-                    setTimeout(() => {
-                        alert(`금지키워드발견: "${dangerousKeywordFound}" 키워드로 인해 게시물이 삭제되었습니다`);
-                    }, 200);
                     setTimeout(() => {
                         alert(`금지키워드발견: "${dangerousKeywordFound}" 키워드로 인해 게시물이 삭제되었습니다`);
                     }, 200);
@@ -67,9 +63,7 @@ function identifyAllKeywords() {
 postsPrint();
 // 3.로컬에 posts(게시물)불러와서 출력
 function postsPrint() {
-function postsPrint() {
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
-    const userContent = document.querySelector(`.usercontent`);   //내용 삽입할 곳
     const userContent = document.querySelector(`.usercontent`);   //내용 삽입할 곳
     let html = "";
     for (let i = 0; i < posts.length; i++) {
