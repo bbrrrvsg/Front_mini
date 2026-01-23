@@ -1,44 +1,27 @@
 function highlightKeywords(keywordList, className, isDanger) {
-    // 리스트가 없거나 비어있으면 함수 종료
-    if (!keywordList || keywordList.length === 0) return;
-
-    // 게시판의 모든 행(tr)을 가져옴
-    const allRows = document.querySelectorAll('.usercontent tr');
-
+    if (!keywordList || keywordList.length === 0) return;       // 리스트가 없거나 비어있으면 함수 종료
+    const allRows = document.querySelectorAll('.usercontent tr');   // 게시판의 모든 행(tr)을 가져옴
     for (let j = 0; j < allRows.length; j++) {
         const row = allRows[j];
         const cell = row.querySelector('td'); // 게시물 내용이 담긴 칸
         if (!cell) continue;
-
         let hasDangerousKeyword = false;
         let dangerousKeywordFound = '';
-
-        // [핵심] 현재 리스트가 금지어인지 강조어인지에 따라 접근할 키 이름을 결정
-        const keyName = isDanger ? "금지어" : "강조어";
-
+        const keyName = isDanger ? "금지어" : "강조어";     // [핵심] 현재 리스트가 금지어인지 강조어인지에 따라 접근할 키 이름을 결정
         for (let i = 0; i < keywordList.length; i++) {
             // 객체 안에서 실제 텍스트 내용을 꺼냄 (예: keywordList[i]["금지어"])
             const keyword = keywordList[i][keyName];
 
             if (!keyword) continue; // 데이터가 비어있으면 건너뜀
-
-            // 셀 내용에 해당 키워드가 포함되어 있는지 확인
-            if (cell.textContent.includes(keyword)) {
-                // split-join 방식으로 하이라이트 태그 삽입
+            if (cell.textContent.includes(keyword)) {       // 셀 내용에 해당 키워드가 포함되어 있는지 확인
                 const highlighted = `<span class="${className}">${keyword}</span>`;
-                cell.innerHTML = cell.innerHTML.split(keyword).join(highlighted);
-
-                // 금지어일 경우 알림과 삭제를 위한 상태 저장
-                if (isDanger) {
-                    hasDangerousKeyword = true;
-                    dangerousKeywordFound = keyword;
-                }
+                cell.innerHTML = cell.innerHTML.split(keyword).join(highlighted);       // split-join 방식으로 하이라이트 태그 삽입
+                if (isDanger) {hasDangerousKeyword = true; dangerousKeywordFound = keyword;}       // 금지어일 경우 알림과 삭제를 위한 상태 저장
             }
         }
-
-        // 금지 키워드가 발견된 행은 3초 뒤 알림 후 삭제
-        if (hasDangerousKeyword) {
+        if (hasDangerousKeyword) {      // 금지 키워드가 발견된 행은 3초 뒤 알림 후 삭제
             setTimeout(function () {
+                const postDelete = row.getAttribute(`data-id`);   //삭제할 게시물 임시
                 const postDelete = row.getAttribute(`data-id`);   //삭제할 게시물 임시
                 if (row) {
                     row.remove();
@@ -59,6 +42,9 @@ function highlightKeywords(keywordList, className, isDanger) {
                             break;
                         }
                     }
+                    setTimeout(() => {
+                        alert(`금지키워드발견: "${dangerousKeywordFound}" 키워드로 인해 게시물이 삭제되었습니다`);
+                    }, 200);
                     setTimeout(() => {
                         alert(`금지키워드발견: "${dangerousKeywordFound}" 키워드로 인해 게시물이 삭제되었습니다`);
                     }, 200);
@@ -85,11 +71,14 @@ function identifyAllKeywords() {
 postsPrint();
 // 3.로컬에 posts(게시물)불러와서 출력
 function postsPrint() {
+function postsPrint() {
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const userContent = document.querySelector(`.usercontent`);   //내용 삽입할 곳
     const userContent = document.querySelector(`.usercontent`);   //내용 삽입할 곳
     let html = "";
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i]; //post에 posts내용 객체로 저장
+        html += `<tr>
         html += `<tr>
             <td class="usercontents" onclick="글상세보기(${post.post_id})"><h3>제목:${post.title}</h3></br>내용:${post.content}</td>
             <td><span class="badge badge-info">${post.category}(${post.brand}})</span></td>

@@ -28,7 +28,7 @@ function reorderLocalList(list, type) {
 function updateView(storageKey, type) {
     const list = JSON.parse(localStorage.getItem(storageKey)) || [];    //로컬에 있는 것들 가져옴 또는 빈 배열
     const isDanger = type === 'F';  
-    const listSelector = isDanger ? ".forbidden-keyword-list" : ".highlight-keyword-list";  //
+    const listSelector = isDanger ? ".forbidden-keyword-list" : ".highlight-keyword-list";  
     const countSelector = isDanger ? ".stat-value-black" : ".stat-value-orange";
     const editFn = isDanger ? "UpdateDangerKeyword" : "UpdateEmphasizeKeyword";
     const deleteFn = isDanger ? "DeleteDangerKeyword" : "DeleteEmphasizeKeyword";
