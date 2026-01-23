@@ -2,7 +2,7 @@ function highlightKeywords(keywordList, className, isDanger) {
     // 리스트가 없거나 비어있으면 함수 종료
     if (!keywordList || keywordList.length === 0) return;
 
-    // 게시판의 모든 행(tr)을 가져옴 (클래스명 주의)
+    // 게시판의 모든 행(tr)을 가져옴
     const allRows = document.querySelectorAll('.usercontent tr');
 
     for (let j = 0; j < allRows.length; j++) {
@@ -39,9 +39,19 @@ function highlightKeywords(keywordList, className, isDanger) {
         // 금지 키워드가 발견된 행은 3초 뒤 알림 후 삭제
         if (hasDangerousKeyword) {
             setTimeout(function () {
+                const postDelete=row.getAttribute(`data-id`);   //삭제할 게시물 임시
                 alert(`금지키워드: "${dangerousKeywordFound}" 발견`);
                 if (row) {
                     row.remove();
+                    let posts=JSON.parse(localStorage.getItem('posts'))||[];    //posts로컬 불러오기
+                    
+                    for(let k=0;k<posts.length;k++){
+                        if(String(posts[k].post_id==String(postDelete))){
+                            posts.splice(k,1);      //만약 금지키워드의 post아이디와 같으면 삭제
+                            localStorage.setItem('posts',JSON.stringify(posts));    //삭제된 로컬 최신화
+                            break;
+                        }
+                    }
                 }
             }, 3000);
         }
@@ -62,6 +72,22 @@ function identifyAllKeywords() {
     const dangerList = JSON.parse(localStorage.getItem('DangerList')) || [];
     highlightKeywords(dangerList, 'keyword-danger', true);
 }
-
-// 3. 페이지가 로드될 때 즉시 실행
-identifyAllKeywords();
+postsPrint();
+// 3.로컬에 posts(게시물)불러와서 출력
+function postsPrint(){
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const userContent=document.querySelector(`.usercontent`);   //내용 삽입할 곳
+    let html = "";
+    for (let i = 0; i < posts.length; i++) {
+        const post = posts[i]; //post에 posts내용 객체로 저장
+        html+=`<tr>
+            <td class="usercontents" onclick="글상세보기(${post.post_id})"><h3>제목:${post.title}</h3></br>내용:${post.content}</td>
+            <td><span class="badge badge-info">${post.category}(${post.brand}})</span></td>
+            <td class="text-muted">${post.reg_date}</td>
+            <td>${post.user_id}</td>
+            <td class="stats-icons">👁️ ${post.view_count}</td>
+          </tr>`;
+    }
+    userContent.innerHTML = html;
+    identifyAllKeywords();
+}
