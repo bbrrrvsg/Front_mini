@@ -19,7 +19,7 @@ function highlightKeywords(keywordList, className, isDanger) {
         for (let i = 0; i < keywordList.length; i++) {
             // 객체 안에서 실제 텍스트 내용을 꺼냄 (예: keywordList[i]["금지어"])
             const keyword = keywordList[i][keyName];
-            
+
             if (!keyword) continue; // 데이터가 비어있으면 건너뜀
 
             // 셀 내용에 해당 키워드가 포함되어 있는지 확인
@@ -39,19 +39,29 @@ function highlightKeywords(keywordList, className, isDanger) {
         // 금지 키워드가 발견된 행은 3초 뒤 알림 후 삭제
         if (hasDangerousKeyword) {
             setTimeout(function () {
-                const postDelete=row.getAttribute(`data-id`);   //삭제할 게시물 임시
-                alert(`금지키워드: "${dangerousKeywordFound}" 발견`);
+                const postDelete = row.getAttribute(`data-id`);   //삭제할 게시물 임시
                 if (row) {
                     row.remove();
-                    let posts=JSON.parse(localStorage.getItem('posts'))||[];    //posts로컬 불러오기
-                    
-                    for(let k=0;k<posts.length;k++){
-                        if(String(posts[k].post_id==String(postDelete))){
-                            posts.splice(k,1);      //만약 금지키워드의 post아이디와 같으면 삭제
-                            localStorage.setItem('posts',JSON.stringify(posts));    //삭제된 로컬 최신화
+                    let posts = JSON.parse(localStorage.getItem('posts')) || [];    //posts로컬 불러오기
+
+                    for (let k = 0; k < posts.length; k++) {
+                        if (String(posts[k].post_id === String(postDelete))) {
+                            posts.splice(k, 1);      //만약 금지키워드의 post아이디와 같으면 삭제
+                            localStorage.setItem('posts', JSON.stringify(posts));    //삭제된 로컬 최신화
+                            let currentCount = parseInt(localStorage.getItem(`deleteCount`)) || 0; //로컬에 저장될 삭제 카운트
+                            currentCount++;
+                            localStorage.setItem(`deleteCount`, currentCount);
+
+                            const Deletecount = document.querySelector(`.stat-value-red`);
+                            if (Deletecount) {
+                                Deletecount.textContent = currentCount + "개";
+                            }
                             break;
                         }
                     }
+                    setTimeout(() => {
+                        alert(`금지키워드발견: "${dangerousKeywordFound}" 키워드로 인해 게시물이 삭제되었습니다`);
+                    }, 200);
                 }
             }, 3000);
         }
@@ -74,13 +84,13 @@ function identifyAllKeywords() {
 }
 postsPrint();
 // 3.로컬에 posts(게시물)불러와서 출력
-function postsPrint(){
+function postsPrint() {
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
-    const userContent=document.querySelector(`.usercontent`);   //내용 삽입할 곳
+    const userContent = document.querySelector(`.usercontent`);   //내용 삽입할 곳
     let html = "";
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i]; //post에 posts내용 객체로 저장
-        html+=`<tr>
+        html += `<tr>
             <td class="usercontents" onclick="글상세보기(${post.post_id})"><h3>제목:${post.title}</h3></br>내용:${post.content}</td>
             <td><span class="badge badge-info">${post.category}(${post.brand}})</span></td>
             <td class="text-muted">${post.reg_date}</td>
