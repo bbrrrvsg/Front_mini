@@ -70,7 +70,7 @@ function postsPrint() {
         const post = posts[i]; //post에 posts내용 객체로 저장
         html += `<tr>
             <td class="usercontents" onclick="글상세보기1(${post.post_id})"><h3>제목:${post.title}</h3></br>내용:${post.content}</td>
-            <td><span class="badge badge-info">${post.category}(${post.brand}})</span></td>
+            <td><span class="badge badge-info"> ${post.category}(${post.brand}})</span></td>
             <td class="text-muted">${post.reg_date}</td>
             <td>${post.user_id}</td>
             <td class="stats-icons">👁️ ${post.view_count}</td>
