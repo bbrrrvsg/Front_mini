@@ -10,7 +10,7 @@ window.onload = function () {
         location.href = "../index.html";
         return;
     }
-
+ 
     // 2. LocalStorage에서 글 찾기
     const data = localStorage.getItem('posts');
     const posts = data ? JSON.parse(data) : [];

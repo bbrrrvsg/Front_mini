@@ -76,7 +76,7 @@ header {
   border-collapse: collapse;
 }
 
-.board-table th {
+.board-table th { 
   padding: 15px 20px;
   background: #f9fafb;
   color: #666;

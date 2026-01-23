@@ -13,7 +13,7 @@ function syncUsersFromPosts() {
         // let post_user_id = posts[i].user_id;
         
         // let userExists = false;
-        // for (let j = 0; j < users.length; j++) {
+        // for (let j = 0; j < users.length; j++) { 
         //     if (users[j].user_id === post_user_id) {
         //         userExists = true;
         //         break;
