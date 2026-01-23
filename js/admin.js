@@ -69,7 +69,7 @@ function postsPrint() {
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i]; //post에 posts내용 객체로 저장
         html += `<tr>
-            <td class="usercontents" onclick="글상세보기(${post.post_id})"><h3>제목:${post.title}</h3></br>내용:${post.content}</td>
+            <td class="usercontents" onclick="글상세보기1(${post.post_id})"><h3>제목:${post.title}</h3></br>내용:${post.content}</td>
             <td><span class="badge badge-info">${post.category}(${post.brand}})</span></td>
             <td class="text-muted">${post.reg_date}</td>
             <td>${post.user_id}</td>
@@ -78,4 +78,25 @@ function postsPrint() {
     }
     userContent.innerHTML = html;
     identifyAllKeywords();
+}
+
+function 글상세보기1(post_id) {
+  let data = localStorage.getItem('posts');
+  let 글목록 = JSON.parse(data);
+
+  let 글인덱스 = -1;
+  for (let i = 0; i < 글목록.length; i++) {
+    if (글목록[i].post_id == post_id) {
+      글인덱스 = i;
+      break;
+    }
+  }
+  
+  if (글인덱스 !== -1) {
+    // 조회수 증가
+    글목록[글인덱스].view_count += 1;
+    localStorage.setItem('posts', JSON.stringify(글목록));
+
+    location.href = `../html/detail.html?id=${post_id}`;
+  }
 }

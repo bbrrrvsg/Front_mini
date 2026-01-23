@@ -32,7 +32,7 @@ function 게시물불러오기() {
   핫게시물표시(글목록);
 }
 
-// 2. 핫 게시판 표시 (조회수 순 정렬 + 클릭 이벤트 추가)
+
 function 핫게시물표시(글목록) {
   const hotPostsContainer = document.getElementById('hot-posts');
   if (!hotPostsContainer) return;
@@ -87,7 +87,7 @@ function 글상세보기(post_id) {
     글목록[글인덱스].view_count += 1;
     localStorage.setItem('posts', JSON.stringify(글목록));
 
-    location.href = `/html/detail.html?id=${post_id}`;
+    location.href = `./html/detail.html?id=${post_id}`;
   }
 }
 
