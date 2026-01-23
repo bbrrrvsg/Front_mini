@@ -1,8 +1,9 @@
+let postId;
 // 페이지 로드 시 실행
-window.onload = function() {
+window.onload = function () {
     // 1. URL에서 post_id 추출
     const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('id');
+    postId = urlParams.get('id');
 
     if (!postId) {
         alert("잘못된 접근입니다.");
@@ -13,14 +14,14 @@ window.onload = function() {
     // 2. LocalStorage에서 글 찾기
     const data = localStorage.getItem('posts');
     const posts = data ? JSON.parse(data) : [];
-    
+
     // 타입이 다를 수 있으므로 == 사용 (정규화 단계에서 ID를 문자/숫자 섞었을 때 안전함)
     const post = posts.find(p => p.post_id == postId);
 
     if (post) {
         // 3. 화면에 데이터 뿌리기
         document.getElementById('detail-title').innerText = post.title;
-        document.getElementById('detail-meta').innerText = 
+        document.getElementById('detail-meta').innerText =
             `${post.user_id} · 조회수 ${post.view_count} · ${post.reg_date}`;
         document.getElementById('detail-content').innerText = post.content;
     } else {
@@ -43,30 +44,30 @@ function 신고제출() {
     if (!reason) {
         alert("사유를 선택해주세요.");
         return;
-      }
+    }
+    // 신고 내역 저장
+    let 신고목록 = JSON.parse(localStorage.getItem('reports')) || [];
 
-      // 신고 내역 저장
-      let 신고목록 = JSON.parse(localStorage.getItem('reports')) || [];
-      
-      let 신고내역 = {
+    let 신고내역 = {
         report_id: Date.now(),
-        post_id: post_id,
-        reason: 신고사유,
+        "post_id": postId,
+        "reason": reason,
         report_date: new Date().toLocaleString()
-      };
+    };
+    console.log(신고내역);
 
-      신고목록.push(신고내역);
-      localStorage.setItem('reports', JSON.stringify(신고목록));
-      syncUsersFromPosts();
-      alert("신고가 접수되었습니다.\n관리자가 확인 후 조치하겠습니다.");
-      
-      신고모달닫기();
-    }
+    신고목록.push(신고내역);
+    localStorage.setItem('reports', JSON.stringify(신고목록));
+    syncUsersFromPosts();
+    alert("신고가 접수되었습니다.\n관리자가 확인 후 조치하겠습니다.");
 
-    // 모달 바깥 클릭시 닫기
-    window.onclick = function(event) {
-      let modal = document.querySelector("#report-modal");
-      if (event.target === modal) {
+    신고모달닫기();
+}
+
+// 모달 바깥 클릭시 닫기
+window.onclick = function (event) {
+    let modal = document.querySelector("#report-modal");
+    if (event.target === modal) {
         신고모달닫기();
-      }
     }
+}

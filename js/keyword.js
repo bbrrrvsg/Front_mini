@@ -28,11 +28,11 @@ function reorderLocalList(list, type) {
 function updateView(storageKey, type) {
     const list = JSON.parse(localStorage.getItem(storageKey)) || [];    //로컬에 있는 것들 가져옴 또는 빈 배열
     const isDanger = type === 'F';  
-    const listSelector = isDanger ? ".forbidden-keyword-list" : ".highlight-keyword-list";  //
+    const listSelector = isDanger ? ".forbidden-keyword-list" : ".highlight-keyword-list";  
     const countSelector = isDanger ? ".stat-value-black" : ".stat-value-orange";
     const editFn = isDanger ? "UpdateDangerKeyword" : "UpdateEmphasizeKeyword";
     const deleteFn = isDanger ? "DeleteDangerKeyword" : "DeleteEmphasizeKeyword";
-    
+    const autoDeleteCount=".stat-value-red";
     // 화면에 그릴 때 사용할 키 이름 결정
     const keyName = isDanger ? "금지어" : "강조어";
 
@@ -49,6 +49,12 @@ function updateView(storageKey, type) {
     const inner = document.querySelector(listSelector);
     if(inner) inner.innerHTML = html;
     document.querySelector(countSelector).textContent = list.length + "개";
+
+    const autoDelete=document.querySelector(autoDeleteCount);
+    if(autoDelete){
+        const totalDelete=parseInt(localStorage.getItem(`deleteCount`))||0;
+        autoDelete.textContent=totalDelete+"개";
+    }
 }
 
 // --- [ 1. 금지 키워드 관련 함수 ] ---
