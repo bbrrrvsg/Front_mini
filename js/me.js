@@ -1,3 +1,11 @@
+
+// ========================================
+// 0. 로컬 스토리지 초기화 
+// ========================================
+localStorage.removeItem('users');
+localStorage.removeItem('reports');
+
+
 // ========================================
 // 1. 데이터 초기화
 // ========================================
@@ -59,6 +67,14 @@ function saveData() {
  */
 function syncReports() {
     let isChanged = false;
+    
+    // 최근 7일 날짜 배열 생성
+    const recentDates = [];
+    for (let i = 0; i < 7; i++) {
+        const date = new Date();
+        date.setDate(date.getDate() - i); // 오늘부터 6일 전까지
+        recentDates.push(date.toISOString().split('T')[0]);
+    }
 
     users.forEach(user => {
         if (user.warning_cnt > 0) {
@@ -71,7 +87,7 @@ function syncReports() {
                     report_id: reports.length + 1,
                     user_id: user.user_id,
                     reason: dummyReasons[Math.floor(Math.random() * dummyReasons.length)],
-                    reg_date: today 
+                    reg_date: recentDates[Math.floor(Math.random() * recentDates.length)] // 랜덤 날짜
                 };
                 reports.push(newReport);
                 isChanged = true;
